@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       name: validation.data.name,
       slug: validation.data.slug,
       description: validation.data.description || null,
-      is_premium: validation.data.is_premium,
+      is_premium: validation.data.is_premium ?? false,
       sort_order: validation.data.sort_order,
     });
 
