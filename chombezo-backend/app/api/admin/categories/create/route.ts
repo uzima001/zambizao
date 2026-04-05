@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
       slug: validation.data.slug,
       description: validation.data.description || null,
       is_premium: validation.data.is_premium ?? false,
+      is_active: true,
       sort_order: validation.data.sort_order,
     });
 
