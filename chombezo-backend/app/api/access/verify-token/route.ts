@@ -45,7 +45,15 @@ export async function POST(request: NextRequest) {
 
     const result = schema.safeParse(body);
     if (!result.success) {
-      throw new ValidationError('Invalid request', result.error.issues);
+      throw new ValidationError(
+        'Invalid request',
+        Object.fromEntries(
+          result.error.issues.map((issue) => [
+            issue.path.join('.') || 'root',
+            issue.message,
+          ])
+        )
+      );
     }
 
     const { session_token } = result.data;
