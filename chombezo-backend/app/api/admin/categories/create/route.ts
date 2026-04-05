@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       description: validation.data.description || null,
       is_premium: validation.data.is_premium ?? false,
       is_active: true,
-      sort_order: validation.data.sort_order,
+      sort_order: validation.data.sort_order ?? 0,
     });
 
     return NextResponse.json(
