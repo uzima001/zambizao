@@ -25,11 +25,7 @@ export async function DELETE(
     }
 
     // Delete category
-    const success = await deleteCategory(id);
-
-    if (!success) {
-      throw new Error('Failed to delete category');
-    }
+    await deleteCategory(id);
 
     return NextResponse.json(
       {
