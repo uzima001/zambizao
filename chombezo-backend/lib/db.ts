@@ -79,6 +79,23 @@ export async function getCategoriesAdmin(limit = 20, offset = 0) {
   return { categories: data || [], total: count || 0 };
 }
 
+export async function getCategoryById(id: string) {
+  const { data, error } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') {
+      return null;
+    }
+    throw new Error(`Failed to fetch category: ${error.message}`);
+  }
+
+  return data;
+}
+
 export async function getCategoryBySlug(slug: string) {
   const { data, error } = await supabase
     .from('categories')
